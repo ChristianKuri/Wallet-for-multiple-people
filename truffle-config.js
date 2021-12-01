@@ -21,9 +21,7 @@ require('dotenv').config();
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
-const privateKeys = [process.env.PRIVATE_KEY];
+const mnemonic = process.env.MNEMONIC;
 
 module.exports = {
     /**
@@ -74,23 +72,23 @@ module.exports = {
         // production: true    // Treats this network as if it was a public net. (default: false)
         // }
         eth: {
-            provider: () => new HDWalletProvider(privateKeys, 'ETH_NODE_URL'),
+            provider: () => new HDWalletProvider(mnemonic, 'ETH_NODE_URL'),
             network_id: 1,
             skipDryRun: true,
         },
         ethTestnet: {
-            provider: () => new HDWalletProvider(privateKeys, 'ETH_NODE_URL'),
+            provider: () => new HDWalletProvider(mnemonic, 'ETH_NODE_URL'),
             network_id: 5,
             skipDryRun: true,
         },
         bsc: {
-            provider: () => new HDWalletProvider(privateKeys, 'https://bsc-dataseed.binance.org/'),
+            provider: () => new HDWalletProvider(mnemonic, 'https://bsc-dataseed.binance.org/'),
             network_id: 56,
             skipDryRun: true,
         },
         // truffle migrate --reset --network bscTestnet
         bscTestnet: {
-            provider: () => new HDWalletProvider(privateKeys, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
+            provider: () => new HDWalletProvider(mnemonic, 'https://data-seed-prebsc-1-s1.binance.org:8545/'),
             network_id: 97,
             skipDryRun: true,
         },
